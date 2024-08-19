@@ -14,8 +14,7 @@ namespace Assignment_2
 
         private void btnCalculator_Click(object sender, EventArgs e)
         {
-            // Khai báo để lấy thông tin
-            string customerName = txtCustomerName.Text.Trim();    // .Trim() -> dùng để xóa dấu cách dư ra khi nhập tên
+            string customerName = txtCustomerName.Text.Trim(); 
             string typeOfCustomer = cboTypeOfCustomer.Text;
             int numberOfPeople = 0;
             double lastMonth = 0;
@@ -75,24 +74,8 @@ namespace Assignment_2
                 return;
             }
 
-
-
-
-
-
-
-
-
-
-
-
-            // Tạo biến var dùng để gọi Calculator
             var waterBill = Calculator(typeOfCustomer, numberOfPeople, lastMonth, thisMonth);
-
-
-
-            // show kết qủa lên list view
-            // Item1 và Item2 là hai double đã trèn              
+     
             ListViewItem item = new ListViewItem(customerName);
             item.SubItems.Add(lastMonth.ToString());
             item.SubItems.Add(thisMonth.ToString());
@@ -101,8 +84,6 @@ namespace Assignment_2
             lvWaterBill.Items.Add(item);
 
 
-
-            // store data listview
             Invoice invoice = new Invoice
             {
                 CustomerName = customerName,
@@ -113,7 +94,6 @@ namespace Assignment_2
             };
             invoices.Add(invoice);
         }
-
 
 
         private void cboTypeOfCustomer_SelectedIndexChanged(object sender, EventArgs e)
@@ -134,13 +114,11 @@ namespace Assignment_2
         private void btnReset_Click(object sender, EventArgs e)
         {
             txtCustomerName.Text = "";
-            cboTypeOfCustomer.SelectedIndex = -1;   // Dùng cho combobox
+            cboTypeOfCustomer.SelectedIndex = -1; 
             txtNumberOfPeople.Text = "";
             txtLastMonth.Text = "";
             txtThisMonth.Text = "";
         }
-
-
 
         // Calculator
         private (double, double) Calculator(string typeOfCustomer, int numberOfPeople,
@@ -223,10 +201,10 @@ namespace Assignment_2
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             string search = txtSearch.Text.Trim();
-            lvWaterBill.Items.Clear();       // xóa đi tt đg có trên màng hình
+            lvWaterBill.Items.Clear();       
             bool foundResult = false;
 
-            if (search == "")        // Search không tìm kiếm sẽ hiển thị tất cả, (found) đưa ra ngoài
+            if (search == "")    
             {
                 foreach (Invoice invoice in invoices)
                 {
@@ -259,13 +237,12 @@ namespace Assignment_2
                 }
             }
 
-            if (!foundResult)          // Nếu tìm kiếm không có sẽ show ra "No results found."
+            if (!foundResult)       
             {
                 ListViewItem item = new ListViewItem("No results found.");
 
                 lvWaterBill.Items.Add(item);
             }
-
         }
 
 
@@ -274,7 +251,7 @@ namespace Assignment_2
         {
             string arrange = cboArrange.Text;
 
-            if (arrange.Equals("Consumption (ascending)"))       // Comsuption tăng
+            if (arrange.Equals("Consumption (ascending)"))
             {
                 int n = invoices.Count;
 
@@ -311,7 +288,7 @@ namespace Assignment_2
                 }
             }
 
-            else if (arrange.Equals("Consumption (descending)"))                   // Consumption giảm
+            else if (arrange.Equals("Consumption (descending)"))           
             {
                 int n = invoices.Count;
 
@@ -348,10 +325,7 @@ namespace Assignment_2
                 }
             }
 
-
-
-
-            else if (arrange.Equals("Water money (ascending)"))        // Water money tăng
+            else if (arrange.Equals("Water money (ascending)"))      
             {
                 int n = invoices.Count;
 
@@ -388,7 +362,7 @@ namespace Assignment_2
                 }
             }
 
-            else if (arrange.Equals("Water money (descending)"))   // Water money giảm
+            else if (arrange.Equals("Water money (descending)")) 
             {
                 int n = invoices.Count;
 
@@ -425,8 +399,7 @@ namespace Assignment_2
                 }
             }
 
-
-            else if (arrange.Equals("Last month (ascending)"))        // Last month tăng
+            else if (arrange.Equals("Last month (ascending)"))     
             {
                 int n = invoices.Count;
 
@@ -463,7 +436,7 @@ namespace Assignment_2
                 }
             }
 
-            else if (arrange.Equals("Last month (descending)"))    // Last month giảm
+            else if (arrange.Equals("Last month (descending)"))  
             {
                 int n = invoices.Count;
 
@@ -500,8 +473,7 @@ namespace Assignment_2
                 }
             }
 
-
-            else if (arrange.Equals("This month (ascending)"))    // This month tăng
+            else if (arrange.Equals("This month (ascending)"))   
             {
                 int n = invoices.Count;
 
@@ -538,7 +510,7 @@ namespace Assignment_2
                 }
             }
 
-            else if (arrange.Equals("This month (descending)"))     // This month giảm
+            else if (arrange.Equals("This month (descending)"))     
             {
                 int n = invoices.Count;
 
@@ -575,7 +547,6 @@ namespace Assignment_2
                 }
             }
 
-
             if (arrange.Equals("Name (A-Z)"))
             {
                 invoices = invoices.OrderBy(inv => inv.CustomerName).ToList();
@@ -593,8 +564,6 @@ namespace Assignment_2
                 }
             }
         }
-
-
 
         private void lvWaterBill_SelectedIndexChanged_1(object sender, EventArgs e)
         {
